@@ -21,7 +21,7 @@ def post_create(request):
 
     return render(request, 'blog/post_create.html', {'form': form})
 
-def post_list(request):
+def apply(request):
     # posts = Post.objects.all()
-    posts = "test"
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    posts = {"username":"test user", "content":"I am a very experienced developer"}
+    return render(request, 'blog/apply.html', {'posts': posts})
