@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-# from .models import Post
+from .models import Post
 
 # def post_list(request):
 #     posts = Post.objects.all()
@@ -20,3 +20,8 @@ def post_create(request):
         form = PostForm()
 
     return render(request, 'blog/post_create.html', {'form': form})
+
+def post_list(request):
+    # posts = Post.objects.all()
+    posts = "test"
+    return render(request, 'blog/post_list.html', {'posts': posts})
