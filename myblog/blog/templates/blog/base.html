@@ -13,6 +13,20 @@
             font-family: 'Roboto', sans-serif;
         }
     </style>
+
+    {% block head_extra %}
+    <style>
+        .large-text {
+            font-size: 4em;
+        }
+        .larger-text {
+            font-size: 1.5em;
+        }
+        .mt-custom {
+            margin-top: 6rem; 
+        }
+    </style>
+    {% endblock %}
 </head>
 <body>
     {% block content %}{% endblock %}
