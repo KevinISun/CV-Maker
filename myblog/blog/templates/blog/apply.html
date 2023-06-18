@@ -19,8 +19,7 @@
                 {% csrf_token %}
                             
                 <div class="form-group">
-                    {{ form.jd.label_tag }}
-                    {{ form.jd }}
+                    {{ form.as_p }}
                 </div>
             
                 <button type="submit" class="btn btn-outline-primary mt-2 d-block mx-auto">Submit</button>
