@@ -57,7 +57,6 @@ def generate_resume(job_description, username):
 
 def apply(request):
     form = JdForm(request.POST or None)
-    posts = {"username":"test user", "content":"I am a very experienced developer"}
     resume = ""
 
     if form.is_valid():
@@ -66,9 +65,9 @@ def apply(request):
         # use username to retrieve user information 
         # store it and pass it to generate_resume function
         resume = generate_resume(jd, username)
-        return render(request, 'blog/apply.html', {'posts': posts, 'form': form, 'jd': jd, 'resume': resume})
+        return render(request, 'blog/apply.html', {'form': form, 'jd': jd, 'resume': resume})
 
-    return render(request, 'blog/apply.html', {'posts': posts, 'form': form})
+    return render(request, 'blog/apply.html', {'form': form})
 
 # get personal info from the username
 
