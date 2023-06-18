@@ -9,5 +9,6 @@ class Post(models.Model):
 
 class JdPost(models.Model):
     # jd = models.CharField(max_length=300)
+    username = models.CharField(max_length=200)
     jd = models.TextField()
     # created_at = models.DateTimeField(auto_now_add=True)
