@@ -3,13 +3,12 @@ from django.shortcuts import render, redirect
 # Create your views here.
 import os
 import openai
-from .models import Post
+from .models import Post, UserData
 from .forms import PostForm, JdForm
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 user_data_dict = {}
-
 
 def post_create(request):
     if request.method == 'POST':
@@ -19,15 +18,14 @@ def post_create(request):
             username = form.cleaned_data['username']
             content = form.cleaned_data['content']
             # Add your desired logic here
-
-            # Can remove when database is set up
-            if username in user_data_dict:
-                user_data_dict[username] = user_data_dict[username] + [content]
-            else:
-                user_data_dict[username] = [content]
             
+            user_data = UserData(username=username, content=content)
+            user_data.save()
+            # if username in user_data_dict:
+            #     user_data_dict[username] = user_data_dict[username] + [content]
+            # else:
+            #     user_data_dict[username] = [content]
             return redirect('/apply')
-
     else:
         form = PostForm()
 
@@ -36,11 +34,12 @@ def post_create(request):
 # combine it with jd data and pass it to chatGPT
 
 def generate_resume(job_description, username):
+    content = get_content_by_username(username)
     response = openai.ChatCompletion.create(
         model="gpt-4-0613",  # Assuming you want to use the ChatGPT model
         messages=[
-            {"role": "system", "content": "You are a skilled professional creating an English resume based on a job description and your client's personal information."},
-            {"role": "user", "content": f"Job description: {job_description}; Personal information: {user_data_dict[username]}"},
+            {"role": "system", "content": "You are a skilled professional creating a resume based on a job description and your client's personal information."},
+            {"role": "user", "content": f"Job description: {job_description}; Personal information: {content}"},
         ],
     )   
 
@@ -65,6 +64,11 @@ def apply(request):
 
 # get personal info from the username
 
-
+def get_content_by_username(username):
+    try:
+        user = UserData.objects.get(username=username)
+        return user.content
+    except UserData.DoesNotExist:
+        return None
 
 

@@ -12,3 +12,7 @@ class JdPost(models.Model):
     username = models.CharField(max_length=200)
     jd = models.TextField()
     # created_at = models.DateTimeField(auto_now_add=True)
+
+class UserData(models.Model):
+    username = models.CharField(max_length=200)
+    content = models.TextField()
