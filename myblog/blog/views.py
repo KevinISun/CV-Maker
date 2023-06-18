@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 import os
@@ -17,6 +17,8 @@ def post_create(request):
             username = form.cleaned_data['username']
             content = form.cleaned_data['content']
             # Add your desired logic here
+            return redirect('/apply')  # Redirect to /apply after successful POST
+
     else:
         form = PostForm()
 

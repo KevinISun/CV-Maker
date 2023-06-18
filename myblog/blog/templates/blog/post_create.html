@@ -7,18 +7,18 @@
 {% load static %}
 
 {% block content %}
-<div class="container my-4 bg-light py-3 rounded">
+<div class="container my-4 py-3 rounded">
     <div class="row justify-content-center">
         <div class="col-12 col-md-6 text-center">
             <div class="d-flex align-items-center justify-content-center mb-4">
                 <img src="{% static 'img/logo.png' %}" alt="Company logo" class="img-fluid" style="width: 100px;">
-                <h1 class="ml-3">CV Maker</h1>
+                <h1 class="ml-3 header">CV Maker</h1>
             </div>
         </div>
     </div>
 
-    <h1 class="large-text text-center mt-custom">You Are More Than One Page of Resume</h1>
-    <p class="larger-text text-center">Register detailed information about you and start customizing your resume</p>
+    <h1 class="large-text text-center mt-custom mb-5 animated">You Are More Than One Page of Resume</h1>
+    <p class="larger-text text-center animated">Register detailed information about you and start customizing your resume</p>
 
     <div class="row justify-content-center">
         <div class="col-12 col-md-6 text-center">
@@ -34,13 +34,16 @@
                     <p>Your Background Information</p>
                     {{ form.content }}
                 </div>
-            
-                <button type="submit" class="btn btn-outline-primary mt-2 d-block mx-auto">Register</button>
+                <p class="mt-5 mb-5 larger-text">Are you ready? Let's get started!</p>
+
+                <button type="submit" class="btn ubuntu btn-primary mt-2 d-block mx-auto" style="border-radius: 50px; padding: 10px 24px; font-size: 20px;">Start Now</button>
+
             </form> 
 
-            <div class="text-center mt-3">
-                <a href="/apply" class="btn link-outline-secondary">Apply for jobs!</a>
-            </div>           
+            {% comment %} <div class="text-center mt-3">
+                <p>Are you ready? Let's get started!</p>
+                <a href="/apply" class="btn ubuntu btn-primary mt-2 d-block mx-auto" style="border-radius: 50px; padding: 10px 24px; font-size: 20px;">Start Now</a>
+            </div>            {% endcomment %}
         </div>
     </div>
 </div>
