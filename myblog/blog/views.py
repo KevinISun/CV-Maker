@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
+
 
 # Create your views here.
 import os
@@ -8,7 +10,7 @@ from .forms import PostForm, JdForm
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
-user_data_dict = {}
+# user_data_dict = {}
 
 def post_create(request):
     if request.method == 'POST':
@@ -18,13 +20,19 @@ def post_create(request):
             username = form.cleaned_data['username']
             content = form.cleaned_data['content']
             # Add your desired logic here
-            
-            user_data = UserData(username=username, content=content)
-            user_data.save()
-            # if username in user_data_dict:
-            #     user_data_dict[username] = user_data_dict[username] + [content]
-            # else:
-            #     user_data_dict[username] = [content]
+            # Check if the username already exists
+            try:
+                user_data = UserData.objects.get(username=username)
+                # Username exists, update content
+                user_data.content = content
+                user_data.save()
+                messages.success(request, 'Content updated successfully for existing username.')
+            except UserData.DoesNotExist:
+                # Username does not exist, create new
+                user_data = UserData(username=username, content=content)
+                user_data.save()
+                messages.success(request, 'New username and content saved successfully.')
+
             return redirect('/apply')
     else:
         form = PostForm()
