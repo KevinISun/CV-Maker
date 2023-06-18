@@ -22,13 +22,6 @@ def post_create(request):
 
     return render(request, 'blog/post_create.html', {'form': form})
 
-# def apply(request):
-#     form = JdForm(request.POST or None)
-#     posts = {"username":"test user", "content":"I am a very experienced developer"}
-#     if form.is_valid():
-#         jd = form.cleaned_data.get('jd')
-#         return render(request, 'blog/apply.html', {'posts': posts, 'form': form, 'jd': jd})
-#     return render(request, 'blog/apply.html', {'posts': posts, 'form': form})
 def apply(request):
     form = JdForm(request.POST or None)
     posts = {"username":"test user", "content":"I am a very experienced developer"}
@@ -36,16 +29,17 @@ def apply(request):
 
     if form.is_valid():
         jd = form.cleaned_data.get('jd')
+        username = form.cleaned_data.get('username')
+        # use username to retrieve user information 
+        # store it and pass it to generate_resume function
         resume = generate_resume(jd)
         return render(request, 'blog/apply.html', {'posts': posts, 'form': form, 'jd': jd, 'resume': resume})
 
     return render(request, 'blog/apply.html', {'posts': posts, 'form': form})
 
-
-
-# do something with OpenAI API
-
 # get personal info from the username
+
+
 
 # combine it with jd data and pass it to chatGPT
 
