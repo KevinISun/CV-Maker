@@ -24,6 +24,21 @@ def post_create(request):
 
     return render(request, 'blog/post_create.html', {'form': form})
 
+# combine it with jd data and pass it to chatGPT
+
+def generate_resume(job_description):
+    response = openai.ChatCompletion.create(
+        model="gpt-4-0613",  # Assuming you want to use the ChatGPT model
+        messages=[
+            {"role": "system", "content": "You are a skilled professional creating a resume based on a job description."},
+            {"role": "user", "content": f"Job description: {job_description}"},
+        ],
+    )
+
+    return response['choices'][0]['message']['content']
+
+
+
 def apply(request):
     form = JdForm(request.POST or None)
     posts = {"username":"test user", "content":"I am a very experienced developer"}
@@ -43,16 +58,4 @@ def apply(request):
 
 
 
-# combine it with jd data and pass it to chatGPT
-
-def generate_resume(job_description):
-    response = openai.ChatCompletion.create(
-        model="gpt-4-0613",  # Assuming you want to use the ChatGPT model
-        messages=[
-            {"role": "system", "content": "You are a skilled professional creating a resume based on a job description."},
-            {"role": "user", "content": f"Job description: {job_description}"},
-        ],
-    )
-
-    return response['choices'][0]['message']['content']
 
