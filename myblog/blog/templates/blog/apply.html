@@ -30,7 +30,11 @@
             <p class="text-center">Display Job Description (tentative)</p>
             
             <p class="text-center">Your resume (tentative)</p>
-            <p class="text-center">{{ resume }}</p> 
+            {% if resume %}
+            <div class="resume">
+                {{ resume|linebreaks }}
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
