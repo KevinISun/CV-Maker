@@ -9,4 +9,4 @@ class PostForm(forms.ModelForm):
 class JdForm(forms.ModelForm):
     class Meta:
         model = JdPost
-        fields = ['jd']
+        fields = ['username', 'jd']
