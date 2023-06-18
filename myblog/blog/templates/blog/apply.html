@@ -7,17 +7,37 @@
 {% load static %}
 
 {% block content %}
-<div class="container my-4 py-3 rounded">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-6 text-center">
-            <div class="d-flex align-items-center justify-content-center mb-4">
-                <img src="{% static 'img/logo.png' %}" alt="Company logo" class="img-fluid" style="width: 100px;">
-                <h1 class="ml-3 header">Job Application</h1>
-            </div>
+<!-- Header -->
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-xl navbar-light navbar-custom-shadow">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'img/logo.png' %}" alt="Company logo" class="img-fluid" style="width: 100px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                {% comment %} 
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link 2</a>
+                </li> 
+                {% endcomment %}
+                <!-- More items here -->
+            </ul>
         </div>
-    </div>
+    </nav>
+</div>
 
-    <h1 class="large-text text-center mt-custom mb-5">Apply for Your Dream Job</h1>
+<!-- Main content -->
+<div class="container my-4 py-3 rounded">
+    <h1 class="section-title text-center mb-5">Apply for Your Dream Job</h1>
     <p class="larger-text text-center">Let us help tailor your resume for any job</p>
 
     <div class="row justify-content-center">
@@ -37,7 +57,7 @@
 
                 <p class="mt-5 mb-5 larger-text">Ready to submit? Let's go!</p>
 
-                <button type="submit" class="btn ubuntu btn-primary mt-2 d-block mx-auto" style="border-radius: 50px; padding: 10px 24px; font-size: 20px;">Submit Application</button>
+                <button type="submit" class="btn ubuntu btn-primary mt-2 d-block mx-auto" style="border-radius: 50px; padding: 10px 24px; font-size: 20px;">Generate Resume</button>
             </form>
 
             <hr>
@@ -49,7 +69,7 @@
             </div>
             {% endif %}
 
-            <a href="/" class="btn ubuntu btn-primary mt-2 d-block mx-auto" style="border-radius: 50px; padding: 10px 24px; font-size: 20px;">Home</a>
+            {% comment %} <a href="/" class="btn ubuntu btn-primary mt-2 d-block mx-auto" style="border-radius: 50px; padding: 10px 24px; font-size: 20px;">Home</a> {% endcomment %}
         </div>
     </div>
 </div>
