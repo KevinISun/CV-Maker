@@ -23,6 +23,8 @@ def post_create(request):
                 user_data_dict[username] = user_data_dict[username] + [content]
             else:
                 user_data_dict[username] = [content]
+            return redirect('/apply')
+
     else:
         form = PostForm()
 
