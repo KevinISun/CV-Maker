@@ -19,10 +19,13 @@ def post_create(request):
             username = form.cleaned_data['username']
             content = form.cleaned_data['content']
             # Add your desired logic here
+
+            # Can remove when database is set up
             if username in user_data_dict:
                 user_data_dict[username] = user_data_dict[username] + [content]
             else:
                 user_data_dict[username] = [content]
+            
             return redirect('/apply')
 
     else:
@@ -36,7 +39,7 @@ def generate_resume(job_description, username):
     response = openai.ChatCompletion.create(
         model="gpt-4-0613",  # Assuming you want to use the ChatGPT model
         messages=[
-            {"role": "system", "content": "You are a skilled professional creating a resume based on a job description and your client's personal information."},
+            {"role": "system", "content": "You are a skilled professional creating an English resume based on a job description and your client's personal information."},
             {"role": "user", "content": f"Job description: {job_description}; Personal information: {user_data_dict[username]}"},
         ],
     )   
