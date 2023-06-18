@@ -8,6 +8,6 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 class JdPost(models.Model):
-    url = models.CharField(max_length=300)
-    # url = models.TextField()
+    # jd = models.CharField(max_length=300)
+    jd = models.TextField()
     # created_at = models.DateTimeField(auto_now_add=True)

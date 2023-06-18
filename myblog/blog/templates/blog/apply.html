@@ -7,7 +7,7 @@
 <h2>{{ posts.username }}</h2>
 <p>{{ posts.content }}</p>
 <hr>
-<p>Post a link to your dream job</p>
+<p>Post a job description here</p>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
@@ -15,5 +15,4 @@
 </form>
 
 <p>Display Job Description (tentative)</p>
-{{ jd.default }}
-{{ jd.title }}
+{{ jd }}
